@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"pnpm --filter @zrpg/server dev\" \"pnpm --filter @zrpg/client dev\"",
+    "prepare": "pnpm --filter @zrpg/shared build",
     "build": "pnpm --filter @zrpg/shared build && pnpm --filter @zrpg/server build && pnpm --filter @zrpg/client build",
     "db:push": "pnpm --filter @zrpg/server db:push",
     "db:generate": "pnpm --filter @zrpg/server db:generate"

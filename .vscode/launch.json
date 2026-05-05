@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Server (tsx watch)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/server",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["dev"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": { "NODE_OPTIONS": "--enable-source-maps" }
+    },
+    {
+      "name": "Client (Vite)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/client",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["dev"],
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "Local:\\s+(https?://\\S+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome",
+        "webRoot": "${workspaceFolder}/packages/client"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Dev (server + client)",
+      "configurations": ["Server (tsx watch)", "Client (Vite)"],
+      "stopAll": true
+    }
+  ]
+}
